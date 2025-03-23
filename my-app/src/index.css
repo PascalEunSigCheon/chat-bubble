@@ -54,9 +54,7 @@ code {
 }
 
 .current-message-not-typing {
-  background-color: var(--body-bg-color);
   caret-color: var(--body-bg-color);
-  transition: background-color 0.2s ease-in-out;
 }
 
 #current-message:focus {
@@ -64,7 +62,7 @@ code {
   cursor: none;
 }
 
-.current-message-not-typing:before, .current-message-typing:before, .past-message:last-child:before {
+.current-message-not-typing:before, .current-message-typing:before, .chat-bubble-white:last-child:before {
   content: "";
   position: absolute;
   z-index: 0;
@@ -75,17 +73,13 @@ code {
   border-bottom-right-radius: 15px;
 }
 
-.current-message-not-typing:before {
-  background-color: var(--body-bg-color);
-  transition: background-color 0.2s ease-in-out;
-}
-
-.current-message-typing:before, .past-message:last-child:before {
+.current-message-typing:before, .chat-bubble-container:last-child .chat-bubble-white::before {
   background-color: white;
   transition: background-color 0.2s ease-in-out;
+  will-change: transform, opacity;
 }
 
-.current-message-not-typing:after, .current-message-typing:after, .past-message:last-child:after {
+.current-message-not-typing:after, .current-message-typing:after, .chat-bubble-white:last-child:after {
   content: "";
   position: absolute;
   z-index: 1;
@@ -96,3 +90,4 @@ code {
   background-color: var(--body-bg-color);
   border-bottom-right-radius: 10px;
 }
+

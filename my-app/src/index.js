@@ -2,12 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
+import { motion, AnimatePresence } from "framer-motion";
 
 function HelloWorld() {
 
   const [messages, setMessages] = React.useState({
+    allMessages: [],
     currentMessage: "",
-    previousMessage: "",
     messageCnt: 0
   });
 
@@ -54,7 +55,7 @@ function HelloWorld() {
         event.preventDefault();
         setMessages((prevState) => ({
           currentMessage: "",
-          previousMessage: prevState.currentMessage,
+          allMessages: [...prevState.allMessages, prevState.currentMessage],
           messageCnt: prevState.messageCnt + 1
         }));
         currentMessageRef.current.textContent = "";
@@ -66,13 +67,6 @@ function HelloWorld() {
       window.removeEventListener("keydown", handleSubmit);
     }
   }, [messages.currentMessage, currentMessageRef]);
-
-  React.useEffect(() => {
-    if (messages.messageCnt){
-      const pastMessagesEl = document.getElementById("past-messages");
-      pastMessagesEl.innerHTML += `<div class="chat-bubble-white">${messages.previousMessage}</div>`;
-    }
-  }, [messages.previousMessage, messages.messageCnt]);
 
   React.useEffect(() => {
     const currentMessageEl = document.getElementById("current-message");
@@ -88,7 +82,27 @@ function HelloWorld() {
   return (
   <div id="chat-container">
     <div id="all-messages">
-      <div id="past-messages"></div>
+      <div id="past-messages">
+        <AnimatePresence>
+        {
+        messages.allMessages.map((message, index) => (
+          <motion.div
+            layout
+            key={index}
+            // initial={{ y: 0 }}
+            initial={{ y: 40 }}
+            animate={{ y: 0 }}
+            exit={{ y: 0 }}
+            // transition={{ type: "spring", stiffness: 100, damping: 5, duration: 0.2 }}
+            transition={{ type: "spring", stiffness: 100, damping: 15, duration: 0.2 }}
+            className='chat-bubble-container'
+          >
+            <div className='chat-bubble-white'>{message}</div>
+          </motion.div>
+        ))
+        }
+        </AnimatePresence>
+      </div>
       <div 
         id="current-message" 
         className="current-message-not-typing" 
