@@ -12,7 +12,7 @@ function HelloWorld() {
     messageCnt: 0
   });
 
-  const currentMessageRef = React.createRef("");
+  const currentMessageRef = React.createRef(null);
 
   function handleInput(){
     setMessages((prevState) => ({
@@ -83,6 +83,7 @@ function HelloWorld() {
   <div id="chat-container">
     <div id="all-messages">
       <div id="past-messages">
+        {messages.allMessages.length > 0 && ( 
         <AnimatePresence>
         {
         messages.allMessages.map((message, index) => (
@@ -102,6 +103,7 @@ function HelloWorld() {
         ))
         }
         </AnimatePresence>
+        )}
       </div>
       <div 
         id="current-message" 
