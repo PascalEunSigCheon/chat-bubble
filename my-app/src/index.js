@@ -53,13 +53,28 @@ function HelloWorld() {
     function handleSubmit (event){
       if (event.key === "Enter" && messages.currentMessage.trim() !== ""){
         event.preventDefault();
+
+        const id = Date.now();
+        // const newMessage = {id, kk}
+
+
         setMessages((prevState) => ({
           currentMessage: "",
-          allMessages: [...prevState.allMessages, prevState.currentMessage],
+          allMessages: [...prevState.allMessages, {id, existing: false, text: prevState.currentMessage}],
           messageCnt: prevState.messageCnt + 1
         }));
         currentMessageRef.current.textContent = "";
         document.getElementById("current-message").className = " current-message-not-typing";
+
+        setTimeout(() => {
+          setMessages((prevState) => ({
+            ...prevState,
+            // allMessages: prevState.allMessages.map(msg => 
+            //   msg.id === id ? { ...msg, existing: true } : msg
+            // )
+            allMessages: prevState.allMessages.filter(msg => msg.id !== id)
+          }));
+        }, 10000);
       }
     }
     window.addEventListener("keydown", handleSubmit);
@@ -79,6 +94,13 @@ function HelloWorld() {
     }
   }, []);
 
+  function handleAnimationComplete(id) {
+    setMessages((prevState) => ({
+      ...prevState,
+      allMessages: prevState.allMessages.filter(msg => msg.id !== id)
+    }))
+  }
+
   return (
   <div id="chat-container">
     <div id="all-messages">
@@ -89,16 +111,14 @@ function HelloWorld() {
         messages.allMessages.map((message, index) => (
           <motion.div
             layout
-            key={index}
-            // initial={{ y: 0 }}
+            key={message.id}
             initial={{ y: 40 }}
-            animate={{ y: 0 }}
-            exit={{ y: 0 }}
-            // transition={{ type: "spring", stiffness: 100, damping: 5, duration: 0.2 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 0, opacity: 0 }}
             transition={{ type: "spring", stiffness: 100, damping: 15, duration: 0.2 }}
             className='chat-bubble-container'
           >
-            <div className='chat-bubble-white'>{message}</div>
+            <div className='chat-bubble-white'>{message.text}</div>
           </motion.div>
         ))
         }
