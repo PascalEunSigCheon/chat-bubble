@@ -93,14 +93,7 @@ function HelloWorld() {
       }, 10);
     }
   }, []);
-
-  function handleAnimationComplete(id) {
-    setMessages((prevState) => ({
-      ...prevState,
-      allMessages: prevState.allMessages.filter(msg => msg.id !== id)
-    }))
-  }
-
+  
   return (
   <div id="chat-container">
     <div id="all-messages">
