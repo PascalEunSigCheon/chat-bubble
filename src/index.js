@@ -4,7 +4,7 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { motion, AnimatePresence } from "framer-motion";
 
-function HelloWorld() {
+function ChatBubble() {
 
   const [messages, setMessages] = React.useState({
     allMessages: [],
@@ -133,7 +133,7 @@ function HelloWorld() {
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <HelloWorld />
+    <ChatBubble />
   </React.StrictMode>
 );
 
