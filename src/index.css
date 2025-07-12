@@ -36,12 +36,20 @@ code {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  /* width: 350px; */
+}
+
+.chat-bubble-container .chat-bubble-white {
+  width: max-content;
+}
+
+#current-message {
+  width: max-content;
 }
 
 .chat-bubble-white, .current-message-not-typing, .current-message-typing {
-  width: 350px;
   word-wrap: break-word;
-  height: auto;
+  /* height: auto; */
   border-radius: 20px;
   position: relative;
   z-index: -1;
