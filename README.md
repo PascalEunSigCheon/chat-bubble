@@ -12,6 +12,6 @@ The web app replicates the web app created by [DevAsLife](https://www.devas.life
 
 ## Technologies
 
-*React.js
+* React.js
 
 
