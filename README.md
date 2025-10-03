@@ -1,10 +1,17 @@
-# Chat bubble app
+# Chat bubble web app
 
-This is a chat bubble app that is intended to be used in videos. The background acts as a green screen which can be filtered out in the video editing process.  
+Chat bubble web app intended to be used in videos built in React.js. The background acts as a green screen which can be filtered out in the video editing process.  
 
-The app replicates the app created by [DevAsLife](https://www.devas.life/) which has become unavailable. 
+The web app replicates the web app created by [DevAsLife](https://www.devas.life/) which has since become unavailable. 
 
-## How to use
+* Start recording the screen with the web app open
+* Type messages
+* Crop out the green screen in the video editing process
 
-I have made a quick introductional [video](https://youtu.be/4cjAW_k0TuQ?si=YusC6XFLgHko9xl3).
+[Video](https://youtu.be/4cjAW_k0TuQ?si=YusC6XFLgHko9xl3)
+
+## Technologies
+
+*React.js
+
 
